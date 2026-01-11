@@ -1,5 +1,9 @@
 # Invoice Management API
 
+## Admin Credentials
+- Email: Admin@gmail.com
+- Password: Admin@123
+
 ## Tech Stack
 - ASP.NET Core Web API (.NET 8)
 - SQL Server
@@ -14,12 +18,5 @@
 - Invoice CRUD Operations
 - Async background logging when invoice is paid
 
-## Setup Instructions
-1. Clone repository
-2. Run SQL script in /Scripts
-3. Update connection string in appsettings.json
-4. Run project
-5. Open /swagger
-
 ## Notes
-AI tools were used for learning and guidance purposes.
+I used ChatGPT as Well as Gemini to understand certain concepts and to generate a detailed plan to understand this framework because this is the first project I have done with .NET . Also used youtube and other similar sources to get an idea about certain concepts
