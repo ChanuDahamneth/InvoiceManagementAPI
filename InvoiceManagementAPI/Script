@@ -1,0 +1,23 @@
+CREATE DATABASE InvoiceDB;
+
+USE InvoiceDB;
+
+CREATE TABLE Users
+(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    Password NVARCHAR(255) NOT NULL,
+    Role NVARCHAR(50) NOT NULL,
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+);
+
+CREATE TABLE Invoices
+(
+    InvoiceId INT IDENTITY(1,1) PRIMARY KEY,
+    InvoiceNumber NVARCHAR(50) NOT NULL,
+    CustomerName NVARCHAR(100) NOT NULL,
+    Amount DECIMAL(18,2) NOT NULL,
+    Status NVARCHAR(50) NOT NULL DEFAULT 'Draft', -- Draft / Paid / Cancelled
+    CreatedDate DATETIME NOT NULL DEFAULT GETDATE()
+);
