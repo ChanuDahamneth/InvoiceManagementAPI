@@ -1,17 +1,14 @@
-﻿namespace InvoiceManagementAPI.BackgroundTasks
-{
-    public static class InvoicePaymentLogger
-    {
-        public static Task LogAsync(int invoiceId)
-        {
-            return Task.Run(() =>
-            {
-                File.AppendAllText(
-                    "payment_log.txt",
-                    $"Invoice {invoiceId} paid at {DateTime.Now}\n"
-                );
-            });
-        }
-    }
+﻿namespace InvoiceManagementAPI.BackgroundTasks;
 
+public class InvoicePaymentLogger
+{
+    // Make sure the method is PUBLIC and ASYNC
+    public async Task LogAsync(int invoiceId)
+    {
+        // Simulate async background logging
+        await Task.Run(() =>
+        {
+            Console.WriteLine($"Invoice {invoiceId} marked as PAID at {DateTime.UtcNow}");
+        });
+    }
 }
