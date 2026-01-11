@@ -1,0 +1,17 @@
+CREATE TABLE Users (
+    Id INT IDENTITY PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(255) NOT NULL,
+    Role NVARCHAR(20) NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Invoices (
+    InvoiceId INT IDENTITY PRIMARY KEY,
+    InvoiceNumber NVARCHAR(50),
+    CustomerName NVARCHAR(100),
+    Amount DECIMAL(18,2),
+    Status NVARCHAR(20),
+    CreatedDate DATETIME DEFAULT GETDATE()
+);
