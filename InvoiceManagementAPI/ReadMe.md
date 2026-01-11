@@ -1,5 +1,9 @@
 # Invoice Management API
 
+##Admin Credentials
+Email: Admin@gmail.com
+Password: Admin@123
+
 ## Tech Stack
 - ASP.NET Core Web API (.NET 8)
 - SQL Server
