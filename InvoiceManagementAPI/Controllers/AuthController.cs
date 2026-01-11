@@ -1,43 +1,45 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using InvoiceManagementAPI.Services;
 using InvoiceManagementAPI.DTOs.Auth;
-using InvoiceManagementAPI.Helpers;
+using System.Threading.Tasks;
 
-namespace InvoiceManagementAPI.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class AuthController : ControllerBase
+namespace InvoiceManagementAPI.Controllers
 {
-    private readonly AuthService _authService;
-    private readonly JwtTokenGenerator _jwtTokenGenerator;
-
-    public AuthController(
-        AuthService authService,
-        JwtTokenGenerator jwtTokenGenerator)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AuthController : ControllerBase
     {
-        _authService = authService;
-        _jwtTokenGenerator = jwtTokenGenerator;
-    }
+        private readonly AuthService _authService;
 
-    [HttpPost("register")]  // ✅ THIS ROUTE MUST EXIST
-    public IActionResult Register(RegisterRequestDto dto)
-    {
-        // Call your service to register user
-        _authService.Register(); // Minimal logic for now
+        public AuthController(AuthService authService)
+        {
+            _authService = authService;
+        }
 
-        return Ok(new { message = "User registered successfully" });
-    }
+        // POST api/Auth/register
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDto dto)
+        {
+            await _authService.RegisterAsync(dto);
+            return Ok(new { Message = "User registered successfully" });
+        }
 
-    [HttpPost("login")]
-    public IActionResult Login(LoginRequestDto dto)
-    {
-        int userId = 1;           // Replace with DB lookup
-        string email = dto.Email;
-        string role = "User";     // Replace with DB role
-
-        string token = _jwtTokenGenerator.GenerateToken(userId, email, role);
-
-        return Ok(new { token });
+        // POST api/Auth/login
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto dto)
+        {
+            try
+            {
+                string token = await _authService.LoginAsync(dto.Email, dto.Password);
+                return Ok(new { Token = token });
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
     }
 }
+
+
+
