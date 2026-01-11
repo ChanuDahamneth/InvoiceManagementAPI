@@ -15,4 +15,4 @@
 - Async background logging when invoice is paid
 
 ## Notes
-AI tools were used for learning and guidance purposes.
+I used ChatGPT as Well as Gemini to understand certain concepts and to generate a detailed plan to understand this framework because this is the first project I have done with .NET . Also used youtube and other similar sources to get an idea about certain concepts
