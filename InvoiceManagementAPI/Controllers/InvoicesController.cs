@@ -19,13 +19,13 @@ public class InvoicesController : ControllerBase
         _invoiceService = invoiceService;
         _paymentLogger = paymentLogger; // ✅ Injected instance
     }
-
     [HttpPost]
-    public IActionResult CreateInvoice(CreateInvoiceDto dto)
+    public async Task<IActionResult> CreateInvoice([FromBody] CreateInvoiceDto dto)
     {
-        _invoiceService.CreateInvoice(); // Minimal logic for now
+        await _invoiceService.CreateInvoiceAsync(dto);
         return Ok(new { message = "Invoice created" });
     }
+
 
     [HttpPut("{invoiceId}/pay")]
     public async Task<IActionResult> MarkAsPaid(int invoiceId)
