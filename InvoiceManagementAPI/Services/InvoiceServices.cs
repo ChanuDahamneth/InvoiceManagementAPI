@@ -36,7 +36,10 @@ namespace InvoiceManagementAPI.Services
         // MARK AS PAID
         public async Task MarkInvoiceAsPaidAsync(int invoiceId)
         {
+            // ✅ Update status in DB
             await _invoiceRepository.UpdateStatusAsync(invoiceId, "Paid");
+
+            // ✅ Log payment asynchronously
             await _paymentLogger.LogAsync(invoiceId);
         }
 
@@ -47,4 +50,5 @@ namespace InvoiceManagementAPI.Services
         }
     }
 }
+
 
