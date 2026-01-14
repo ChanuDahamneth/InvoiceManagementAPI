@@ -39,10 +39,11 @@ public class InvoicesController : ControllerBase
         return Ok(new { message = $"Invoice {invoiceId} marked as paid." });
     }
 
-    [HttpDelete("{invoiceId}")]
-    public IActionResult DeleteInvoice(int invoiceId)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteInvoice(int id)
     {
-        _invoiceService.DeleteInvoice(invoiceId);
-        return Ok(new { message = $"Invoice {invoiceId} deleted." });
+        await _invoiceService.DeleteInvoiceAsync(id);
+        return Ok(new { message = "Invoice deleted" });
     }
+
 }
